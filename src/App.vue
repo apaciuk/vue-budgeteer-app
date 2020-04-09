@@ -72,18 +72,18 @@
             <div class="hide" id="income">
                 <ul class="list"></ul>
                 <div class="input">
-                    <input type="text" v-model="value1" ref="value1" :value="value1" id="income-title-input" name="title" placeholder="Title">
-                    <input type="number" v-model="value2" ref="value2" :value="value2" id="income-amount-input" name="amount" placeholder="$0">
+                    <input type="text" v-model="incomeTitle"  ref="incomeTitle" id="income-title-input" name="title" placeholder="Title">
+                    <input type="number" v-model="incomeAmount" ref="incomeAmount" id="income-amount-input" name="amount" placeholder="$0">
                     <div class="add-income"><img src="./assets/icon/plus.png" alt=""></div>
                 </div>
             </div>
             <div class="hide" id="expense">
                 <ul class="list"></ul>
                 <div class="input">
-                    <input type="text" v-model="value3" ref="value3" :value="value3" id="expense-title-input" name="title" placeholder="Title">
-                    <input type="number" v-model="value4" ref="value4" :value="value4" id="expense-amount-input" name="amount" placeholder="$0">
+                    <input type="text" v-model="expensesTitle" ref="expensesTitle" id="expense-title-input" name="title" placeholder="Title">
+                    <input type="number" v-model="expensesAmount" ref="expensesAmount" id="expense-amount-input" name="amount" placeholder="$0">
                     <div class="add-expense"><img src="./assets/icon/plus.png" alt=""></div>
-                </div>
+           </div>
             </div>
             <div id="all">
                 <ul class="list"></ul>
@@ -96,17 +96,15 @@
 <script>
 export default {
   name: 'App',
-  props: ['value'],
-  methods: {
-    useValues() {
-      this.$emit('input', {
-      value1: +this.$refs.value1.value,
-      value2: +this.$refs.value2.value,
-      value3: +this.$refs.value3.value,
-      value4: +this.$refs.value4.value
-      });
-    }
+ props:
+ [ 'incomeTitle', 'incomeAmount', 'expensesTitle', 'expensesAmount' ],
+ methods: {
+  useValues() {
+    this.$emit('input', {
+       value1: +this.$refs.incomeTitle.value
+    })
   }
+ }
 }
 </script>
 <style scoped>
@@ -130,7 +128,6 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
-
 /* Firefox */
 input[type=number] {
   -moz-appearance: textfield;
