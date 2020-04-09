@@ -5,7 +5,7 @@
       color="white"
       light
     >
-     <div class="text-center">
+    <div class="text-center">
           <v-img
           alt="iTunes Logo"
           class="shrink"
@@ -72,16 +72,16 @@
             <div class="hide" id="income">
                 <ul class="list"></ul>
                 <div class="input">
-                    <input type="text" id="income-title-input" name="title" placeholder="Title">
-                    <input type="number" id="income-amount-input" name="amount" placeholder="$0">
+                    <input type="text" v-model="value1" ref="value1" :value="value1" id="income-title-input" name="title" placeholder="Title">
+                    <input type="number" v-model="value2" ref="value2" :value="value2" id="income-amount-input" name="amount" placeholder="$0">
                     <div class="add-income"><img src="./assets/icon/plus.png" alt=""></div>
                 </div>
             </div>
             <div class="hide" id="expense">
                 <ul class="list"></ul>
                 <div class="input">
-                    <input type="text" id="expense-title-input" name="title" placeholder="Title">
-                    <input type="number" id="expense-amount-input" name="amount" placeholder="$0">
+                    <input type="text" v-model="value3" ref="value3" :value="value3" id="expense-title-input" name="title" placeholder="Title">
+                    <input type="number" v-model="value4" ref="value4" :value="value4" id="expense-amount-input" name="amount" placeholder="$0">
                     <div class="add-expense"><img src="./assets/icon/plus.png" alt=""></div>
                 </div>
             </div>
@@ -93,17 +93,21 @@
     </v-content>
  </v-app>
 </template>
-
 <script>
 export default {
   name: 'App',
-  components: {
-  },
-
-  data: () => ({
-    //
-  }),
-};
+  props: ['value'],
+  methods: {
+    useValues() {
+      this.$emit('input', {
+      value1: +this.$refs.value1.value,
+      value2: +this.$refs.value2.value,
+      value3: +this.$refs.value3.value,
+      value4: +this.$refs.value4.value
+      });
+    }
+  }
+}
 </script>
 <style scoped>
 body{
@@ -111,7 +115,7 @@ body{
     font-family: 'Gilroy';
 }
 
-*{
+* {
     font-family: 'Gilroy';
     list-style: none;
     text-decoration: none;
